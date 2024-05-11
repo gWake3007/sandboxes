@@ -1,57 +1,50 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+// import "./App.css";
+import Card from "./components/Card";
+import users from "./data.json";
 
-// function App() {
-//   const [count, setCount] = useState(0)
-
-  
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vitejs.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.jsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App
-
-const Product = () => {
+function App() {
   return (
     <div>
-      <h2>Cookies</h2>
-			<p>Price: 999 credits</p>
-    </div>
-  );
-};
-
-export default function App() {
-  return (
-    <div>
-      <h1>Products</h1>
-
-      <Product />
-      <Product />
-      <Product />
+      {users.map((user) => {
+        return (
+          <Card
+            key={user.id}
+            name={user.name}
+            // address={user.address}
+            email={user.email}
+            phone={user.phone}
+          />
+        );
+      })}
+      <Card
+        key={777}
+        name="Serhii"
+        phone={777}
+        email="qwerty@qwerty.com"
+        // address="motel"
+      />
     </div>
   );
 }
+
+export default App;
+
+// function App() {
+//   console.log("users: >>", users);
+//   return (
+//     <div>
+//       <Card
+//         name="Alex"
+//         phone={555555555}
+//         email="qwery@gmail.com"
+//         qwery="qwery"
+//       />
+//       <Card
+//         name="Serhii"
+//         phone={111111111}
+//         email="qwertyqwerty@gmail.com"
+//         qwery="qwertyqwerty"
+//       />
+//     </div>
+//   );
+// }
