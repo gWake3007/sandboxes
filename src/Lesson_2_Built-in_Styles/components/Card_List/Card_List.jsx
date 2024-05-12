@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 
 const Card_List = () => {
   return (
-    <div>
+    <div className="container-all-cards">
       {users.map((user) => {
         return (
           <Card

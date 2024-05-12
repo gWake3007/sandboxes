@@ -2,7 +2,7 @@ import "./Card.css";
 const Card = ({ name, email, phone }) => {
   return (
     <>
-      <div>
+      <div className="container" style={{ backgroundColor: "red" }}>
         <h2>{name}</h2>
         <hr />
         <div>
@@ -19,3 +19,4 @@ const Card = ({ name, email, phone }) => {
 export default Card;
 
 //!false null undefined не рендереться на реакті. А також не працюють звичайні if else ВИКОРИСТОВУЄМО ТЕРНАРНИКИ!!!
+//! style={{ backgroundColor: "red" }} - Так не бажанно стилізувати. Але можливо що буде зустрічатись така стилізація.
