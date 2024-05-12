@@ -1,3 +1,4 @@
+import "./Card.css";
 const Card = ({ name, email, phone }) => {
   return (
     <>
