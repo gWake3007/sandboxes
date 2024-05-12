@@ -1,6 +1,6 @@
 // import "./App.css";
 import Card from "./components/Card";
-import users from "./data.json";
+import users from "../data.json";
 
 function App() {
   return (
