@@ -1,8 +1,9 @@
-import "./Card.css";
+import css from "./Card.module.css";
+import Button from "../Button/Button.jsx";
 const Card = ({ name, email, phone }) => {
   return (
     <>
-      <div className="container" style={{ backgroundColor: "red" }}>
+      <div className={css.container} style={{ backgroundColor: "red" }}>
         <h2>{name}</h2>
         <hr />
         <div>
@@ -12,6 +13,7 @@ const Card = ({ name, email, phone }) => {
         </div>
       </div>
       <hr />
+      <Button text="qwerty" />
     </>
   );
 };

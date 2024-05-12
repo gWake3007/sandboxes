@@ -1,10 +1,10 @@
-import "./Card_List.css";
+import css from "./Card_List.module.css";
 import users from "../../data.json";
 import Card from "../Card/Card";
 
 const Card_List = () => {
   return (
-    <div className="container-all-cards">
+    <div className={css.container}>
       {users.map((user) => {
         return (
           <Card
