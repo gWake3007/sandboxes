@@ -113,6 +113,50 @@ import { useState } from "react";
 //   );
 // };
 
+//?Об'єкт стейтів.
+// const CounterComponent = ({ value, handleIncrement }) => {
+//   return (
+//     <>
+//       <button onClick={handleIncrement}>Increment</button>
+//       <p>{value}</p>
+//     </>
+//   );
+// };
+
+// function App() {
+//   const [state, setState] = useState({
+//     a: 0,
+//     b: 0,
+//     c: 0,
+//   });
+//   const handleIncrementA = () => {
+//     setState({ ...state, a: state.a + 1 });
+//   };
+//   const handleIncrementB = () => {
+//     setState({ ...state, b: state.b + 1 });
+//   };
+//   const handleIncrementC = () => {
+//     setState({ ...state, c: state.c + 1 });
+//   };
+//   return (
+//     <div>
+//       <CounterComponent
+//         value={state.a}
+//         handleIncrement={handleIncrementA}
+//       ></CounterComponent>
+//       <CounterComponent
+//         value={state.b}
+//         handleIncrement={handleIncrementB}
+//       ></CounterComponent>
+//       <CounterComponent
+//         value={state.c}
+//         handleIncrement={handleIncrementC}
+//       ></CounterComponent>
+//       <p>Total: {state.a + state.b + state.c}</p>
+//     </div>
+//   );
+// }
+
 function App() {
   const handleClick = (id) => {
     console.log(id);
