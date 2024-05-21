@@ -1,7 +1,6 @@
 // import Card_List from "./components/Card_List/Card_List";
 
-//? useState - хук в реакті.
-import { useState } from "react";
+import Posts from "./components/Posts/Posts";
 
 // const App = () => {
 //   // let clicks = 0;
@@ -156,17 +155,21 @@ import { useState } from "react";
 //     </div>
 //   );
 // }
-
+//?Практичне завдання.
 function App() {
-  const handleClick = (id) => {
-    console.log(id);
-  };
-  return (
-    <div>
-      <button onClick={() => handleClick(5)}>qwerty</button>
-      <button onClick={() => handleClick(50)}>qwerty</button>
-    </div>
-  );
+  return <Posts />;
 }
+
+// function App() {
+//   const handleClick = (id) => {
+//     console.log(id);
+//   };
+//   return (
+//     <div>
+//       <button onClick={() => handleClick(5)}>qwerty</button>
+//       <button onClick={() => handleClick(50)}>qwerty</button>
+//     </div>
+//   );
+// }
 
 export default App;
