@@ -3,11 +3,14 @@ import MyComponent from "./components/MyComponent/MyComponent";
 import SearchBar from "./components/SearchBar/SearchBar";
 import LangSwitcher from "./components/LangSwitcher/LangSwitcher";
 import RadioButton from "./components/RadioButton/RadioButton";
+import Checkbox from "./components/Checkbox/Checkbox";
+import ControlForm from "./components/ControlForm/ControlForm";
 import { useState } from "react";
 
 function App() {
   const [lang, setLang] = useState("uk");
   const [coffeeSize, setCoffeeSize] = useState("sm");
+  const [hasAccepted, setHasAccepted] = useState(false);
   const handleLogin = (userData) => {
     console.log(userData);
   };
@@ -19,8 +22,10 @@ function App() {
       <SearchBar />
       <LangSwitcher value={lang} onSelect={setLang} />
       <p>Selected language: {lang}</p>
-      <RadioButton values={coffeeSize} onSelect={setCoffeeSize} />
+      <RadioButton value={coffeeSize} onSelect={setCoffeeSize} />
       <p>Selected coffee: {coffeeSize}</p>
+      <Checkbox value={hasAccepted} onSelect={setHasAccepted} />
+      <ControlForm />
     </>
   );
 }

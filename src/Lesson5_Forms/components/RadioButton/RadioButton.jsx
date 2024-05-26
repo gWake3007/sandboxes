@@ -1,4 +1,4 @@
-const RadioButton = ({ values, onSelect }) => {
+const RadioButton = ({ value, onSelect }) => {
   const handleSizeChange = (evt) => {
     onSelect(evt.target.value);
   };
@@ -10,7 +10,7 @@ const RadioButton = ({ values, onSelect }) => {
           type="radio"
           name="coffeeSize"
           value="sm"
-          checked={values === "sm"}
+          checked={value === "sm"}
           onChange={handleSizeChange}
         />
         Small
@@ -20,7 +20,7 @@ const RadioButton = ({ values, onSelect }) => {
           type="radio"
           name="coffeeSize"
           value="md"
-          checked={values === "md"}
+          checked={value === "md"}
           onChange={handleSizeChange}
         />
         Medium
@@ -30,7 +30,7 @@ const RadioButton = ({ values, onSelect }) => {
           type="radio"
           name="coffeeSize"
           value="lg"
-          checked={values === "lg"}
+          checked={value === "lg"}
           onChange={handleSizeChange}
         />
         Large
