@@ -17,8 +17,8 @@ function App() {
       <LoginForm onLogin={handleLogin} />
       <MyComponent />
       <SearchBar />
-      <p>Selected language: {lang}</p>
       <LangSwitcher value={lang} onSelect={setLang} />
+      <p>Selected language: {lang}</p>
       <RadioButton values={coffeeSize} onSelect={setCoffeeSize} />
       <p>Selected coffee: {coffeeSize}</p>
     </>
