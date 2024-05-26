@@ -7,6 +7,7 @@ import { useState } from "react";
 
 function App() {
   const [lang, setLang] = useState("uk");
+  const [coffeeSize, setCoffeeSize] = useState("sm");
   const handleLogin = (userData) => {
     console.log(userData);
   };
@@ -18,7 +19,8 @@ function App() {
       <SearchBar />
       <p>Selected language: {lang}</p>
       <LangSwitcher value={lang} onSelect={setLang} />
-      <RadioButton />
+      <RadioButton values={coffeeSize} onSelect={setCoffeeSize} />
+      <p>Selected coffee: {coffeeSize}</p>
     </>
   );
 }
