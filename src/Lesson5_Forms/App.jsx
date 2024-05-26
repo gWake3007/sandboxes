@@ -2,6 +2,7 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import MyComponent from "./components/MyComponent/MyComponent";
 import SearchBar from "./components/SearchBar/SearchBar";
 import LangSwitcher from "./components/LangSwitcher/LangSwitcher";
+import RadioButton from "./components/RadioButton/RadioButton";
 import { useState } from "react";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       <SearchBar />
       <p>Selected language: {lang}</p>
       <LangSwitcher value={lang} onSelect={setLang} />
-      <radioButton />
+      <RadioButton />
     </>
   );
 }
