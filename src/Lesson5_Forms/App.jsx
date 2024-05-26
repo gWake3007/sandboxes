@@ -8,12 +8,13 @@ import ControlForm from "./components/ControlForm/ControlForm";
 import { useState } from "react";
 
 function App() {
-  const [lang, setLang] = useState("uk");
-  const [coffeeSize, setCoffeeSize] = useState("sm");
-  const [hasAccepted, setHasAccepted] = useState(false);
   const handleLogin = (userData) => {
     console.log(userData);
   };
+  const [lang, setLang] = useState("uk");
+  const [coffeeSize, setCoffeeSize] = useState("sm");
+  const [hasAccepted, setHasAccepted] = useState(false);
+  const [values, setValues] = useState({ login: "", password: "" });
   return (
     <>
       <h1>Please login to your account!</h1>
@@ -25,7 +26,7 @@ function App() {
       <RadioButton value={coffeeSize} onSelect={setCoffeeSize} />
       <p>Selected coffee: {coffeeSize}</p>
       <Checkbox value={hasAccepted} onSelect={setHasAccepted} />
-      <ControlForm />
+      <ControlForm value={values} onSelect={setValues} />
     </>
   );
 }
