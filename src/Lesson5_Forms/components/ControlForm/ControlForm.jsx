@@ -1,3 +1,5 @@
+import css from "./ControlForm.module.css";
+
 const ControlForm = ({ value, onSelect }) => {
   const handleChange = (evt) => {
     onSelect({
@@ -14,7 +16,7 @@ const ControlForm = ({ value, onSelect }) => {
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
         type="text"
         name="login"
