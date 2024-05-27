@@ -32,6 +32,7 @@ function App() {
       <Checkbox value={hasAccepted} onSelect={setHasAccepted} />
       <ControlForm value={values} onSelect={setValues} />
       <Form submit={submit} />
+      <Form submit={submit} />
     </>
   );
 }
