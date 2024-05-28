@@ -1,3 +1,4 @@
+import { useState } from "react";
 import LoginForm from "./components/LoginForm/LoginForm";
 import MyComponent from "./components/MyComponent/MyComponent";
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -6,7 +7,8 @@ import RadioButton from "./components/RadioButton/RadioButton";
 import Checkbox from "./components/Checkbox/Checkbox";
 import ControlForm from "./components/ControlForm/ControlForm";
 import Form from "./components/Form/Form";
-import { useState } from "react";
+import ControlledForm from "./components/ControlledForm/ControlledForm";
+import InputContoler from "./components/InputContoler/InputContoler";
 
 function App() {
   const handleLogin = (userData) => {
@@ -19,6 +21,8 @@ function App() {
   const submit = (data) => {
     console.log(data);
   };
+  const [inputValue, setInputValue] = useState("qwerty");
+  const [inputUser, setInputUser] = useState("user");
   return (
     <>
       <h1>Please login to your account!</h1>
@@ -32,7 +36,9 @@ function App() {
       <Checkbox value={hasAccepted} onSelect={setHasAccepted} />
       <ControlForm value={values} onSelect={setValues} />
       <Form submit={submit} />
-      <Form submit={submit} />
+      <InputContoler value={inputValue} onChange={setInputValue} />
+      <InputContoler value={inputUser} onChange={setInputUser} />
+      <ControlledForm />
     </>
   );
 }

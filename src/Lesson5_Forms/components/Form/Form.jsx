@@ -1,4 +1,5 @@
 import { useId } from "react";
+import css from "./Form.module.css";
 
 const Form = ({ submit }) => {
   const uniqUserId = useId();
@@ -14,7 +15,7 @@ const Form = ({ submit }) => {
     e.target.reset();
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css.container} onSubmit={handleSubmit}>
       <div>
         <label htmlFor={uniqUserId}>User name</label>
         <br />
