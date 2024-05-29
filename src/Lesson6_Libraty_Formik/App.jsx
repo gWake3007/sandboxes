@@ -1,4 +1,10 @@
+import FormForFomik from "./components/FormForFomik/FormForFomik";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <FormForFomik />
+    </>
+  );
 }
 export default App;
