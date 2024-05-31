@@ -1,4 +1,4 @@
-import FormForFomik from "./components/FormForFomik/FormForFomik";
+import FormForFomik from "./components/Form/FormForFomik";
 
 function App() {
   return (
