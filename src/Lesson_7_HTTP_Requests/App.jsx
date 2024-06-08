@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ArticleList from "./components/ArticleList/ArticleList";
+import css from "./App.module.css";
 
 function App() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   useEffect(() => {
     async function fetchArticles() {
       try {
@@ -15,6 +17,7 @@ function App() {
         setArticles(response.data.hits);
       } catch (error) {
         console.log(error);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -25,6 +28,11 @@ function App() {
     <>
       <h1>Latest Articles</h1>
       {loading && <p>Loading data, please wait...</p>}
+      {error && (
+        <p className={css.error}>
+          Whoops, something went wrong! Please try reloading this page
+        </p>
+      )}
       {articles.length > 0 && <ArticleList items={articles} />}
     </>
   );
