@@ -1,11 +1,9 @@
-const ArticleList = ({ items }) => {
+const ArticleList = ({ articles }) => {
   return (
     <ul>
-      {items.map(({ objectID, url, title }) => (
-        <li key={objectID}>
-          <a href={url} target="_blank" rel="noreferrer noopener">
-            {title}
-          </a>
+      {articles.map((article) => (
+        <li key={article.objectID}>
+          <a href={article.url}>{article.title}</a>
         </li>
       ))}
     </ul>

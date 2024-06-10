@@ -1,42 +1,37 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import ArticleList from "./components/ArticleList/ArticleList";
-import css from "./App.module.css";
+import { getArticlessApi } from "./api/articles-api.js";
+import ArticleList from "./components/ArticleList/ArticleList.jsx";
+import Loading from "./components/Loading/Loading.jsx";
+import Error from "./components/Error/Error.jsx";
 
-function App() {
-  const [articles, setArticles] = useState([]);
+const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [articles, setArticles] = useState([]);
+
   useEffect(() => {
-    async function fetchArticles() {
+    const getArticles = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          "https://hn.algolia.com/api/v1/search?query=react"
-        );
-        setArticles(response.data.hits);
+        const data = await getArticlessApi("react");
+        setArticles(data);
       } catch (error) {
         console.log(error);
         setError(true);
       } finally {
         setLoading(false);
       }
-    }
-    fetchArticles();
+    };
+    getArticles();
   }, []);
   return (
     <>
-      <h1>Latest Articles</h1>
-      {loading && <p>Loading data, please wait...</p>}
-      {error && (
-        <p className={css.error}>
-          Whoops, something went wrong! Please try reloading this page
-        </p>
-      )}
-      {articles.length > 0 && <ArticleList items={articles} />}
+      {loading && <Loading />}
+      {error && <Error />}
+      {articles.length > 0 && <ArticleList articles={articles} />}
     </>
   );
-}
+};
 export default App;
 
 //?Стан loading потрібен для того щоб при очікуванні коли підтягується API в try, catch, finally змінювати стан та спочатку додавати Loading і по завершенню прибирати!
