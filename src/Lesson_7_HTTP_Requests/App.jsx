@@ -15,6 +15,7 @@ function App() {
   useEffect(() => {
     const getArticles = async () => {
       try {
+        setError(false);
         setLoading(true);
         //?Закоментоване очищення. Для того щоб Load More додавало далі page до попереднього.
         // setArticles([]);
