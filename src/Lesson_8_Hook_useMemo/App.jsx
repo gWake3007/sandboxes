@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { getArticlesApi } from "./api/articles-api.js";
 import ArticleList from "./components/ArticleList/ArticleList.jsx";
 import Loading from "./components/Loading/Loading.jsx";
@@ -6,6 +6,8 @@ import Error from "./components/Error/Error.jsx";
 import SearchForm from "./components/SearchForm/SearchForm.jsx";
 
 function App() {
+  const [counter, setCounter] = useState(0);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [articles, setArticles] = useState([]);
@@ -42,11 +44,22 @@ function App() {
   const handleLoadMore = () => {
     setPage(page + 1);
   };
+
+  //?useMemo - тут потрібно щоб виконувалось ТІЛЬКИ сортування коли потрібно а не коли перерендериться сторінка(Тобто при кліках на баттон який змінюється чи щось інше).
+  const sortedArticles = useMemo(
+    () =>
+      articles.toSorted((a, b) => {
+        console.log("sorting");
+        return a.title.localeCompare(b.title);
+      }),
+    [articles]
+  );
   return (
     <>
+      <button onClick={() => setCounter(counter + 1)}>{counter}</button>
       <SearchForm submit={submitForm} />
       {error && <Error />}
-      {articles.length > 0 && <ArticleList articles={articles} />}
+      {sortedArticles.length > 0 && <ArticleList articles={sortedArticles} />}
       {loading && <Loading />}
       {articles.length > 0 && (
         <button onClick={handleLoadMore}>Load More...</button>
