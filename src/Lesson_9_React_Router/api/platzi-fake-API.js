@@ -6,3 +6,8 @@ export const getProductsApi = async () => {
   const { data } = await axios.get("/products");
   return data;
 };
+
+export const getSingleProductsApi = async (id) => {
+  const { data } = await axios.get(`/products/${id}`);
+  return data;
+};
