@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AppMemo from "./AppMemo";
-// import App from "./App.jsx";
+import App from "./App";
 import "./index.css";
-import LangProvider from "./LangContext";
+// import LangProvider from "./LangContext";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <LangProvider>
-      <AppMemo />
-    </LangProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
