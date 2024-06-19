@@ -47,6 +47,8 @@ const ProductsPage = () => {
 
   return (
     <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error</p>}
       <label htmlFor="filterProducts">Filter by title: </label>
       <input
         type="text"

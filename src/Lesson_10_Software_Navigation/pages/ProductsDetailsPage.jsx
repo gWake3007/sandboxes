@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Outlet, useParams, Link, useLocation } from "react-router-dom";
 import { getSingleProductsApi } from "../api/platzi-fake-API";
 
@@ -10,6 +10,9 @@ const ProductsDetailsPage = () => {
 
   const location = useLocation();
   console.log("location ProductsDetailsPage", location);
+
+  //?В useRef() - зберігаємо локація для повернення з пошуку чи сторінки.Потрібно це для того щоб в кожному лінку нижче по іерархії не додавати location.state а просто зберігати в головному(Щоб не дублювати код).
+  const backLocation = useRef(location.state ?? "/products");
 
   useEffect(() => {
     if (!productId) return;
@@ -29,7 +32,9 @@ const ProductsDetailsPage = () => {
 
   return (
     <div>
-      <Link to={location.state ?? "/products"}>Back</Link>
+      <Link to={backLocation.current}>Back</Link>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error</p>}
       {product && (
         <div>
           <h3>{product.title}</h3>
