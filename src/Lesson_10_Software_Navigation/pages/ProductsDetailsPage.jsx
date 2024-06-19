@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet, useParams, Link } from "react-router-dom";
+import { Outlet, useParams, Link, useLocation } from "react-router-dom";
 import { getSingleProductsApi } from "../api/platzi-fake-API";
 
 const ProductsDetailsPage = () => {
@@ -22,8 +22,12 @@ const ProductsDetailsPage = () => {
     };
     getData();
   }, [productId]);
+
+  const location = useLocation();
+  console.log(location);
   return (
     <div>
+      <Link to="/products">Back</Link>
       {product && (
         <div>
           <h3>{product.title}</h3>
