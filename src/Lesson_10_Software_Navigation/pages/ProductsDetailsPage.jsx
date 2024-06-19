@@ -7,6 +7,10 @@ const ProductsDetailsPage = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const location = useLocation();
+  console.log("location ProductsDetailsPage", location);
+
   useEffect(() => {
     if (!productId) return;
     const getData = async () => {
@@ -23,11 +27,9 @@ const ProductsDetailsPage = () => {
     getData();
   }, [productId]);
 
-  const location = useLocation();
-  console.log(location);
   return (
     <div>
-      <Link to="/products">Back</Link>
+      <Link to={location.state ?? "/products"}>Back</Link>
       {product && (
         <div>
           <h3>{product.title}</h3>
@@ -46,3 +48,4 @@ const ProductsDetailsPage = () => {
 export default ProductsDetailsPage;
 
 //?<Outlet /> - потрібен для відображання div чілдненів в Router!
+//?<Link to={location.state}>Back</Link> - таким чином ми повертаємось туди звідки і переходили.Тобто на посилання пошуку елементу.
