@@ -1,8 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
-// import HomePage from "./pages/HomePage";
-// import ProductsPage from "./pages/ProductsPage";
-// import ProductsDetailsPage from "./pages/ProductsDetailsPage";
 import { lazy, Suspense } from "react";
 
 //?Завантажуємо наш компонент через ліниве завантаження (для збереження ресурсу). Щоб це працювало обгортаємо потрібні компоненти в Suspence(В більшості випадків всю App)
