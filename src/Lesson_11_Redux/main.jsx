@@ -4,11 +4,17 @@ import App from "./App";
 import "./index.css";
 // import LangProvider from "./LangContext";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./redux(store)/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
+
+//?Пропсом підтягуємо файл store.js.Та додаємо його пропсом в Provider яким огортаємо весь наш проєкт.
