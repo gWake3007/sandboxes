@@ -10,7 +10,6 @@ const ProductsPage = () => {
   const [params, setParams] = useSearchParams();
 
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     const getData = async () => {

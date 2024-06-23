@@ -1,9 +1,9 @@
-import { createStore } from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
+import { createStore } from "redux";
 
 const initialState = {
   balance: {
-    value: 0,
+    value: 1000,
   },
 };
 

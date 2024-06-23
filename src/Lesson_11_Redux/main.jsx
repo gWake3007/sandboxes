@@ -5,7 +5,7 @@ import "./index.css";
 // import LangProvider from "./LangContext";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./redux(store)/store";
+import { store } from "./reduxStore/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
