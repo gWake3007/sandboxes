@@ -1,14 +1,12 @@
-import { composeWithDevTools } from "@redux-devtools/extension";
-import { combineReducers, createStore } from "redux";
-import { balanceReducer } from "./balanceSlice";
-import { itemsReducer } from "./itemsSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import { reducer } from "./rootReducer";
 
-const reducer = combineReducers({
-  balance: balanceReducer,
-  items: itemsReducer,
+export const store = configureStore({
+  reducer,
 });
 
-export const store = createStore(reducer, composeWithDevTools());
+//?В Redux Toolkit замість createStore стор оготаємо в configureStore.
+//?Сам об'єкт reducer часто ще називають rootReducer.Але в configurateStore значення ключа повинно бути reducer.(reducer: reducer, || reducer, тобто одноіменний ключ значення використовуємо.)
 
 // const initialState = {
 //   balance: {

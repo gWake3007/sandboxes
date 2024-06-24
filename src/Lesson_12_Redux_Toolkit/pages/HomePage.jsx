@@ -1,11 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { actionDeposit, actionWithdraw } from "../reduxStore/balanceSlice";
+import { actionNewItem } from "../reduxStore/itemsSlice";
 import { useState } from "react";
+import CreateItemForm from "../components/CreateItemForm/CreateItemForm";
 
 const HomePage = () => {
   const [value, setValue] = useState(0);
   const balance = useSelector((state) => {
     return state.balance.value;
+  });
+  const items = useSelector((state) => {
+    return state.items;
   });
   const dispath = useDispatch();
 
@@ -15,6 +20,13 @@ const HomePage = () => {
   const handleWithdraw = () => {
     dispath(actionWithdraw(Number(value)));
   };
+
+  const submit = (itemObj) => {
+    dispath(actionNewItem(itemObj));
+  };
+
+  //?actionWithdraw({ ...itemObj, createdAt: new Date(), isAdmin: false }) - після ...itemObj йдуть звичайні дефолтні значення.
+  //?Але краще його додати в itemsSlice.js. ВАЖЛИВО!!!
   return (
     <div>
       HomePage
@@ -24,11 +36,13 @@ const HomePage = () => {
       <input
         type="number"
         value={value}
-        onChange={({ target: { value } }) => setValue(value)}
+        onChange={({ target: { value } }) => setValue(Number(value))}
       />
       <hr />
       <button onClick={handleDeposit}>Deposit</button>
       <button onClick={handleWithdraw}>Withdraw</button>
+      <hr />
+      <CreateItemForm submit={submit} />
     </div>
   );
 };
