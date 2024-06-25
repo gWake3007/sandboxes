@@ -1,24 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
-import { actionDeposit, actionWithdraw } from "../reduxStore/balanceSlice_Old";
+// import { actionDeposit, actionWithdraw } from "../reduxStore/balanceSlice_Old";
 import { actionNewItem } from "../reduxStore/itemsSlice";
 import { useState } from "react";
 import CreateItemForm from "../components/CreateItemForm/CreateItemForm";
+import { deposit, withdraw } from "../reduxStore/balanceSlice";
 
 const HomePage = () => {
   const [value, setValue] = useState(0);
   const balance = useSelector((state) => {
     return state.balance.value;
   });
-  const items = useSelector((state) => {
-    return state.items;
-  });
+  // const items = useSelector((state) => {
+  //   return state.items;
+  // });
   const dispath = useDispatch();
 
   const handleDeposit = () => {
-    dispath(actionDeposit(Number(value)));
+    dispath(deposit(Number(value)));
   };
   const handleWithdraw = () => {
-    dispath(actionWithdraw(Number(value)));
+    dispath(withdraw(Number(value)));
   };
 
   const submit = (itemObj) => {
