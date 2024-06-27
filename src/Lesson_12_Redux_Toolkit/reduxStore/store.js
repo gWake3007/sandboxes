@@ -1,20 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from "./rootReducer";
-//?Імпорти для persistReducer.
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-
-const persistConfig = {
-  key: "balance",
-  storage,
-};
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+import { reducer } from "./rootReducer";
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer,
 });
-
-export const persistor = persistStore(store);
 
 //?В Redux Toolkit замість createStore стор оготаємо в configureStore.
 //?Сам об'єкт reducer часто ще називають rootReducer.Але в configurateStore значення ключа повинно бути reducer.(reducer: reducer, || reducer, тобто одноіменний ключ значення використовуємо.)
