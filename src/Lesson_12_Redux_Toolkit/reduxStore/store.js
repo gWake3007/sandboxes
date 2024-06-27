@@ -1,9 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { reducer } from "./rootReducer";
+import { rootReducer } from "./rootReducer";
+//?Імпорти для persistReducer.
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+
+const persistConfig = {
+  key: "balance",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer,
+  reducer: persistedReducer,
 });
+
+export const persistor = persistStore(store);
 
 //?В Redux Toolkit замість createStore стор оготаємо в configureStore.
 //?Сам об'єкт reducer часто ще називають rootReducer.Але в configurateStore значення ключа повинно бути reducer.(reducer: reducer, || reducer, тобто одноіменний ключ значення використовуємо.)
@@ -28,25 +39,6 @@ export const store = configureStore({
 //         },
 //       };
 //     case "balance/withdraw":
-//       return {
-//         ...state,
-//         balance: {
-//           ...state.balance,
-//           value: state.balance.value - action.payload,
-//         },
-//       };
-//     case "items/new":
-//       return {
-//         ...state,
-//         items: {
-//           ...state.items,
-//           items: action.payload,
-//         },
-//       };
-//     default:
-//       return state;
-//   }
-// };
 
 //?initialState - Це стан для ВСЬОГО нашого проєкту! ВАЖЛИВО!!!
 //?Перший раз в state(при рендері) завжди прилітає undefined. Тому ми вказали state=initialState - щоб якщо прилітає undefined то прилітав пустий об'єкт значенть.
