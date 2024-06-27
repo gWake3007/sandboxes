@@ -1,7 +1,7 @@
 // import { balanceReducer } from "./balanceSlice_Old";
 import { combineReducers } from "redux";
 import { balanceReducer } from "./balanceSlice";
-import { itemsReducer } from "./itemsSlice";
+import { itemsReducer } from "./balanceSlice";
 
 export const rootReducer = combineReducers({
   // balance: balanceReducer,
