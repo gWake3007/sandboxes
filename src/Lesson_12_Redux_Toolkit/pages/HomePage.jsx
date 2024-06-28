@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { actionDeposit, actionWithdraw } from "../reduxStore/balanceSlice_Old";
-import { actionNewItem } from "../reduxStore/itemsSlice";
-import { useState } from "react";
-import CreateItemForm from "../components/CreateItemForm/CreateItemForm";
+import { addItem } from "../reduxStore/itemsSlice";
 import { deposit, withdraw } from "../reduxStore/balanceSlice";
+import CreateItemForm from "../components/CreateItemForm/CreateItemForm";
 
 const HomePage = () => {
   const [value, setValue] = useState(0);
@@ -22,7 +22,7 @@ const HomePage = () => {
     dispath(withdraw(Number(value)));
   };
   const submit = (itemObj) => {
-    dispath(actionNewItem(itemObj));
+    dispath(addItem(itemObj));
   };
 
   //?actionWithdraw({ ...itemObj, createdAt: new Date(), isAdmin: false }) - після ...itemObj йдуть звичайні дефолтні значення.
