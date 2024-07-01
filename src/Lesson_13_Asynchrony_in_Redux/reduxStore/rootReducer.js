@@ -1,14 +1,23 @@
-// import { balanceReducer } from "./balanceSlice_Old";
-import { combineReducers } from "redux";
 import { balanceReducer } from "./balanceSlice";
 import { itemsReducer } from "./itemsSlice";
+import storage from "redux-persist/lib/storage";
+import persistReducer from "redux-persist/es/persistReducer";
 
-export const rootReducer = combineReducers({
-  // balance: balanceReducer,
-  balance: balanceReducer,
-  items: itemsReducer,
-});
+const persistConfig = {
+  key: "balance",
+  storage,
+  whitelist: ["value"],
+};
 
-//?Імпортуємо balanceReducer тільки з файлу де зробленно новим методом createSlice!!!ВАЖЛИВО!!!
+const persistConfig2 = {
+  key: "items",
+  storage,
+};
 
-//?З використанням persistReducer огортаємо наш root в combineReducers. ВАЖЛИВО!!!
+const balancePersistReducer = persistReducer(persistConfig, balanceReducer);
+const itemsPersistReducer = persistReducer(persistConfig2, itemsReducer);
+
+export const rootReducer = {
+  balance: balancePersistReducer,
+  items: itemsPersistReducer,
+};
