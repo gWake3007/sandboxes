@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import { lazy, Suspense } from "react";
+import TodoPage from "./pages/TodoPage";
 
 //?Завантажуємо наш компонент через ліниве завантаження (для збереження ресурсу). Щоб це працювало обгортаємо потрібні компоненти в Suspence(В більшості випадків всю App)
 const ProductsDetailsPage = lazy(() => import("./pages/ProductsDetailsPage"));
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="sub-products-a" element={<div>Products A</div>} />
             <Route path="sub-products-b" element={<div>Products B</div>} />
           </Route>
+          <Route path="/todo" element={<TodoPage />} />
           <Route path="*" element={<div>404</div>} />
         </Routes>
       </Suspense>
