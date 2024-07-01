@@ -3,13 +3,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchTodo } from "../reduxStore/todo/todoThunks";
 
 const TodoPage = () => {
-  const todo = useSelector((state) => state.todo.todo);
+  const todos = useSelector((state) => state.todo.todo);
+  const isLoading = useSelector((state) => state.todo.isLoading);
+  const error = useSelector((state) => state.todo.error);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTodo());
   }, [dispatch]);
-  return <div>TodoPage</div>;
+
+  return (
+    <div>
+      {isLoading && <h2>Loading...</h2>}
+      {error && <h2>Error</h2>}
+      {todos && (
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.todo}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default TodoPage;

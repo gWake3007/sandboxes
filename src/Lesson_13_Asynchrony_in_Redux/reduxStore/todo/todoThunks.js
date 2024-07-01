@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://dummyjson.com/";
+axios.defaults.baseURL = "https://dummyjson.com";
 
 export const fetchTodo = createAsyncThunk("todo/fetchAllTodo", async () => {
-  const { data } = await axios("todos");
+  const { data } = await axios("/todos");
   return data;
 });
 
