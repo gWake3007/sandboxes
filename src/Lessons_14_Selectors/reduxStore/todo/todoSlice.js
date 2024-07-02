@@ -51,3 +51,9 @@ export const todoReducer = todoSlice.reducer;
 //?    state.isLoading = false;
 //?  })
 //?В цьому кейсі звертаємось так state.todo = payload.todos тому що в бекенді ми до масиву об'єктів з данними так звертаємось.
+
+//?selectTodo - Функція поза межами компоненту TodoPage.Створенна щоб уникнути дублювання коду.
+export const selectTodo = (state) => state.todo.todo;
+export const selectFilter = (state) => state.filter.filterText;
+export const selectLoading = (state) => state.todo.isLoading;
+export const selectError = (state) => state.todo.error;
