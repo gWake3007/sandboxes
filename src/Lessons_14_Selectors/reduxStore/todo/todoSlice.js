@@ -32,9 +32,9 @@ const todoSlice = createSlice({
         state.todo = state.todo.filter((el) => el.id !== payload.id);
         state.isLoading = false;
       })
-      .addCase(deleteTodo.rejected, (state, { payload }) => {
+      .addCase(deleteTodo.rejected, (state) => {
         state.isLoading = false;
-        state.error = payload;
+        state.error = "";
       });
   },
 });
