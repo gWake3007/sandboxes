@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTodo } from "../reduxStore/todo/todoThunks";
+import { deleteTodo, fetchTodo } from "../reduxStore/todo/todoThunks";
+import TodoList from "../components/TodoList/TodoList";
 
 const TodoPage = () => {
   const todos = useSelector((state) => state.todo.todo);
@@ -13,17 +14,15 @@ const TodoPage = () => {
     dispatch(fetchTodo());
   }, [dispatch]);
 
+  const handleDelete = (id) => {
+    dispatch(deleteTodo(id));
+  };
+
   return (
     <div>
       {isLoading && <h2>Loading...</h2>}
-      {error && <h2>Error</h2>}
-      {todos && (
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.id}>{todo.todo}</li>
-          ))}
-        </ul>
-      )}
+      {error && <h2>{error}</h2>}
+      {todos && <TodoList todos={todos} handleDelete={handleDelete} />}
     </div>
   );
 };

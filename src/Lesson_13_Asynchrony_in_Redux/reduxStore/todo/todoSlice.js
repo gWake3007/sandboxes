@@ -1,29 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTodo } from "./todoThunks";
+import { deleteTodo, fetchTodo } from "./todoThunks";
 
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
     todo: null,
     isLoading: false,
-    error: false,
+    error: "",
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTodo.pending, (state) => {
         state.isLoading = true;
+        state.error = "";
       })
       .addCase(fetchTodo.fulfilled, (state, { payload }) => {
-        state.error = false;
+        state.error = "";
         state.todo = payload.todos;
         state.isLoading = false;
       })
       .addCase(fetchTodo.rejected, (state) => {
         state.isLoading = false;
-        state.error = true;
+        state.error = "";
+      })
+      .addCase(deleteTodo.pending, (state) => {
+        state.isLoading = true;
+        state.error = "";
+      })
+      .addCase(deleteTodo.fulfilled, (state, { payload }) => {
+        state.error = "";
+        state.todo = state.todo.filter((el) => el.id !== payload.id);
+        state.isLoading = false;
+      })
+      .addCase(deleteTodo.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       });
   },
 });
+
+//?console.log(payload); - консоль працює тому що ми відловили помилку в todoThunks.js за допомогою thunkAPI.
 
 export const todoReducer = todoSlice.reducer;
 

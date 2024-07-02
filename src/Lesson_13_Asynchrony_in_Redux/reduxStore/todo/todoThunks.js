@@ -8,4 +8,17 @@ export const fetchTodo = createAsyncThunk("todo/fetchAllTodo", async () => {
   return data;
 });
 
+export const deleteTodo = createAsyncThunk(
+  "todo/deleteTodo",
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`/todos/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 //?createAsyncThunk() - для запиту на бек-Енд і щоб @reduxjs/toolkit його автоматично опрацював!
+//?thunkAPI.rejectWithValue(error); - більш грамотна обробка помилки. За допомогою thunkAPI.
