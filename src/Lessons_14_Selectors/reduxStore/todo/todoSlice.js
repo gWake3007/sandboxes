@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { deleteTodo, fetchTodo } from "./todoThunks";
 
 const todoSlice = createSlice({
@@ -57,3 +57,23 @@ export const selectTodo = (state) => state.todo.todo;
 export const selectFilter = (state) => state.filter.filterText;
 export const selectLoading = (state) => state.todo.isLoading;
 export const selectError = (state) => state.todo.error;
+
+//?selectFilterTodo - складний селектор який робить обчислення по фільтрації одразу в самому слайсі!
+// export const selectFilterTodo = (state) => {
+//   console.log("selectFilterTodo");
+//   const todos = selectTodo(state);
+//   const filterText = selectFilter(state);
+//   return todos?.filter((el) =>
+//     el.todo.toLowerCase().includes(filterText.toLowerCase())
+//   );
+// };
+
+//?Приклад мемоізації в Redux.Першим іде масив залежностей [],далі ідуть аргументи(завжди в потрібному порядку в залежності від масива залежності). А далі і сам колл-Бек фільтрації.Якщо нічого не змінюється в фільтрації то функція не запуститься!!!
+export const selectFilterTodo = createSelector(
+  [selectTodo, selectFilter],
+  (todos, filterText) => {
+    return todos?.filter((el) =>
+      el.todo.toLowerCase().includes(filterText.toLowerCase())
+    );
+  }
+);

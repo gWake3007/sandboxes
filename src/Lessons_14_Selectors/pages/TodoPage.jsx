@@ -4,15 +4,17 @@ import { deleteTodo, fetchTodo } from "../reduxStore/todo/todoThunks";
 import TodoList from "../components/TodoList/TodoList";
 import FilterText from "../components/FilterText/FilterText";
 import {
-  selectTodo,
-  selectFilter,
+  selectFilterTodo,
   selectLoading,
   selectError,
 } from "../reduxStore/todo/todoSlice";
 
 const TodoPage = () => {
-  const todos = useSelector(selectTodo);
-  const filterText = useSelector(selectFilter);
+  // const filterText = useSelector(selectFilter);
+  // const todos = useSelector(selectTodo);
+  //?Замість двух селекторів вище тепер робимо фільтрацію в самому слайсі і звудти витягуємо селектор.
+  const filterTodos = useSelector(selectFilterTodo);
+
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
@@ -26,16 +28,20 @@ const TodoPage = () => {
     dispatch(deleteTodo(id));
   };
 
-  const filterTodos = todos.filter((el) =>
-    el.todo.toLowerCase().includes(filterText.toLowerCase())
-  );
+  // const filterTodos = todos?.filter((el) =>
+  //   el.todo.toLowerCase().includes(filterText.toLowerCase())
+  // );
+  //?Дуже ВАЖЛИВО!!! todos?.filter тому що todos можуть бути нулевими. Щоб не було помилок при ононвленні сторінки.
+  //?Також цей фільтер вже закоментований тому що фільтрація зроблена в слайсі і через useSelector підтягнута в компонент.
 
   return (
     <div>
       {isLoading && <h2>Loading...</h2>}
       {error && <h2>{error}</h2>}
       <FilterText />
-      {todos && <TodoList todos={filterTodos} handleDelete={handleDelete} />}
+      {filterTodos && (
+        <TodoList todos={filterTodos} handleDelete={handleDelete} />
+      )}
     </div>
   );
 };
