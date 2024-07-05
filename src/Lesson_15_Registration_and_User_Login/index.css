@@ -13,10 +13,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.flex {
+  display: flex;
+  gap: 12px;
+}
+
+.just {
+  justify-content: space-between;
+}
+
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
