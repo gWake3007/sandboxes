@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://auth-backend-lesson.herokuapp.com";
+axios.defaults.baseURL = "https://auth-backend-lesson.herokuapp.com/api/";
 
 //?Забираємо Токен авторизації щоб пізніше діставатися до tasks які доступні післе авторизації!
 const SetHeaderToken = (token) => {
