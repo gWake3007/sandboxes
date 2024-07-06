@@ -2,7 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import AppBar from "./components_new/AppBar/AppBar";
 
-// const HomePage = lazy(() => import("./pages/HomePage"));
+const HomePage = lazy(() => import("./pages_new/HomePage"));
+const RegisterPage = lazy(() => import("./pages_new/RegisterPage"));
+const LoginPage = lazy(() => import("./pages_new/LoginPage"));
+const TasksPage = lazy(() => import("./pages_new/TasksPage"));
 
 const App = () => {
   return (
@@ -10,12 +13,10 @@ const App = () => {
       <AppBar />
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/" element={<></>} />
-          <Route path="/auth" element={<></>}>
-            <Route path="login" element={<></>} />
-            <Route path="register" element={<></>} />
-          </Route>
-          <Route path="/tasks" element={<></>} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="/tasks" element={<TasksPage />} />
           <Route path="*" element={<div>404</div>} />
         </Routes>
       </Suspense>
