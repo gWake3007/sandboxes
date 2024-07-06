@@ -50,3 +50,17 @@ export const loginOutOperation = createAsyncThunk(
     }
   }
 );
+
+export const currentOperation = createAsyncThunk(
+  "auth/current",
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      await axios.post("users/logOut");
+      ClearHeaderToken();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+//?getState - функція яка надає доступ до стору(localStorage данних).
