@@ -8,10 +8,10 @@ const CreateTasksForm = ({ submit }) => {
     actions.resetForm();
   };
   return (
-    <Formik initialValues={{ name: "" }} onSubmit={handleSubmit}>
+    <Formik initialValues={{ text: "" }} onSubmit={handleSubmit}>
       <Form>
         <label htmlFor={taskId}>Task Name: </label>
-        <Field id={taskId} name="name"></Field>
+        <Field id={taskId} name="text"></Field>
       </Form>
     </Formik>
   );

@@ -3,15 +3,21 @@ import { selectorTasks } from "../reduxStore/tasks/selectorsTasks";
 import TasksList from "../components_new/TasksList/TasksList";
 import CreateTasksForm from "../components_new/CreateTasksForm/CreateTasksForm";
 import { useEffect } from "react";
+import {
+  getAllTasksOperation,
+  createTaskOperation,
+} from "../reduxStore/tasks/operationsTasks";
 
 const TasksPage = () => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectorTasks);
+
   const createTask = (task) => {
-    dispatch();
+    dispatch(createTaskOperation(task));
   };
+
   useEffect(() => {
-    dispatch();
+    dispatch(getAllTasksOperation());
   }, [dispatch]);
   return (
     <div>
