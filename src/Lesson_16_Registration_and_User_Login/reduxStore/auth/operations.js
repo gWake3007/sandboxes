@@ -55,12 +55,25 @@ export const currentOperation = createAsyncThunk(
   "auth/current",
   async (_, { rejectWithValue, getState }) => {
     try {
-      await axios.post("users/logOut");
-      ClearHeaderToken();
+      const { auth } = getState();
+      SetHeaderToken(auth.token);
+      const { data } = await axios.get("users/current");
+      SetHeaderToken(data.token);
+      return data;
     } catch (error) {
+      ClearHeaderToken();
       return rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { auth } = getState();
+      if (!auth.token) {
+        return false;
+      }
+    },
   }
 );
 
 //?getState - функція яка надає доступ до стору(localStorage данних).
+//?condition - коллбек функція яка є третім аргументом яка працює таким чином що якщо час токену пройшов або якась помилка то асинхронна операція не відбуважться взагалі.
